@@ -10,7 +10,7 @@ app.secret_key = '12345'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '485485'
-app.config['MYSQL_DB'] = 'python_sql'
+app.config['MYSQL_DB'] = 'python_sql' 
 
 mysql = MySQL(app)
 
@@ -34,6 +34,8 @@ def cadastro():
         flash('Usuário cadastrado com sucesso!')
         return redirect('/')
     return redirect('/')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
