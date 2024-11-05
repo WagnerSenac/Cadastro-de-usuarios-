@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Lista de Cadastros</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastros Realizados</h2>
+        <table border="1" cellspacing="0" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario['id'] }}</td>
+                    <td>{{ usuario['nome'] }}</td>
+                    <td>{{ usuario['email'] }}</td>
+                    <a href="{{ url_for('editar', id=usuario['id']) }}" class="button">Editar</a>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/" class="button">Voltar ao Cadastro</a>
+    </div>
+    
+</body>
+</html>
