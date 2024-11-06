@@ -9,7 +9,7 @@ app.secret_key = '12345'
 # Configure MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '485485'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'python_sql' 
 
 mysql = MySQL(app)
@@ -63,6 +63,16 @@ def editar(id):
     usuario = cursor.fetchone()
     cursor.close()
     return render_template('editar.html', usuario=usuario)
+
+@app.route('/delete/<id>', methods=['GET'])
+def delete(id):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('DELETE FROM usuarios WHERE id=%s', (id))
+    mysql.connection.commit()
+    cursor.close()
+
+    flash('Usuário deletado co sucesso!')
+    return redirect('/dados')
 
 
     
